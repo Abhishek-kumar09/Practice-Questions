@@ -1,6 +1,7 @@
 package com.codeforcause.proioryQueue;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
@@ -18,9 +19,7 @@ public class TopKFrequent {
             hm.merge(num, 1, Integer::sum);
         }
 
-        PriorityQueue<Integer> pq = new PriorityQueue((a, b) ->
-                hm.get(a) - hm.get(b)
-        );
+        PriorityQueue<Integer> pq = new PriorityQueue(Comparator.comparingInt(hm::get));
 
         for(int key: hm.keySet()) {
             pq.offer(key);
